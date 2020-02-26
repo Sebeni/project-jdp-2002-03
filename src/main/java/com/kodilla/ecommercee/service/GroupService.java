@@ -42,10 +42,12 @@ public class GroupService {
     
     public GroupDto updateGroup(GroupDto groupAfterChange) {
         GroupDto groupBeforeChange = getGroupById(groupAfterChange.getId());
-        int indexToChange = dummyRepo.indexOf(groupBeforeChange);
-        dummyRepo.add(indexToChange, groupAfterChange);
-        return dummyRepo.get(indexToChange);
+        if(groupBeforeChange != null) {
+            int indexToChange = dummyRepo.indexOf(groupBeforeChange);
+            dummyRepo.set(indexToChange, groupAfterChange);
+            return dummyRepo.get(indexToChange);
+        } else {
+            return null;
+        }
     }
-    
-    
 }
