@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class OrderDto {
