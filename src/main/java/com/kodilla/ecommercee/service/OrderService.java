@@ -26,8 +26,6 @@ public class OrderService {
     }
     
     public OrderDto addOrder(OrderDto orderToAdd) {
-        long newId = dummyRepoOfOrders.size() + 1;
-        orderToAdd.setId(newId);
         dummyRepoOfOrders.add(orderToAdd);
         return orderToAdd;
     }
@@ -50,9 +48,9 @@ public class OrderService {
         }
     }
     
-    public void deleteOrderById(int id) {
-        if(getOrderById((long) id) != null) {
-            dummyRepoOfOrders.remove(id - 1);
+    public void deleteOrderById(Long id) {
+        if(getOrderById(id) != null) {
+            dummyRepoOfOrders.remove((int) (long) id - 1);
         }
     }
 }

@@ -39,7 +39,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteOrder")
-    public void deleteOrder(@RequestParam int id) {
+    public void deleteOrder(@RequestParam Long id) {
         orderService.deleteOrderById(id);
     }
 }
