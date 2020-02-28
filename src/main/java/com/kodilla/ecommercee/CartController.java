@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,28 +43,4 @@ public class CartController {
         return cartService.createOrderFromCart(cart);
     }
 
-
-
 }
-
-/*
-
-    @RequestMapping(method = RequestMethod.GET, value = "/getAllGroups")
-    public List<GroupDto> getAllGroups() {
-        return groupService.getAllGroups();
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/addGroup")
-    public GroupDto addGroup(@RequestParam String name) {
-        return groupService.addGroup(name);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/getGroupById")
-    public GroupDto getGroupById(@RequestParam Long id) {
-        return groupService.getGroupById(id);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GroupDto updateGroup(@RequestBody GroupDto groupAfterChange) {
-        return groupService.updateGroup(groupAfterChange);
-    }*/
