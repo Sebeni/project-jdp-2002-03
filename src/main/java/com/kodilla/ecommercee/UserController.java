@@ -14,13 +14,14 @@ public class UserController {
     private List<UserDto> users = new ArrayList<>();
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser")
-    public boolean addUser(@RequestBody UserDto userDto) {
-        return users.add(userDto);
+    public UserDto addUser(@RequestBody UserDto userToAdd) {
+        users.add(userToAdd);
+        return userToAdd;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
     public UserDto blockUser(@RequestParam Long userId ) {
-        return new UserDto(userId);
+        return new UserDto(userId, "Jan", "Kowalski", true);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getKey")

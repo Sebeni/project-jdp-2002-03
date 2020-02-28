@@ -1,13 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
-public class UserDto {
-    private String userName;
-    private String lastname;
-    private Long userId;
-    private boolean blocked;
+public final class UserDto {
+    private final Long userId;
+    private final String userName;
+    private final String lastname;
+    private final boolean blocked;
 
-    public UserDto(Long userId) {
+    public UserDto(final Long userId, final String userName, final String lastname, final boolean blocked) {
         this.userId = userId;
+        this.userName = userName;
+        this.lastname = lastname;
+        this.blocked = blocked;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public String getUserName() {
@@ -16,10 +23,6 @@ public class UserDto {
 
     public String getLastname() {
         return lastname;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public boolean isBlocked() {
