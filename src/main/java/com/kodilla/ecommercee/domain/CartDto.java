@@ -53,7 +53,7 @@ public final class CartDto {
         this.name = name;
     }
 
-    private void setProducts(List<ProductDto> products) {
+    public void setProducts(List<ProductDto> products) {
         this.products = products;
     }
 }
