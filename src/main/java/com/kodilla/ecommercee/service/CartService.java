@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.Optional.ofNullable;
 
 @Service
 public class CartService {
@@ -22,33 +19,33 @@ public class CartService {
     private List<CartDto> emptyList = new ArrayList<>();
 
     public CartDto createEmptyCart(String name) {
-        CartDto newCart = new CartDto("Name");
+
+        CartDto newCart = new CartDto(1L, "TestCart", new ArrayList<>());
         cartRepository.save(newCart);
         return newCart;
 
     }
 
     public List<ProductDto> getProductsfromCart(CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
+        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto(1L, "TestCart", new ArrayList<>()));
         return resultCart.getProducts();
     }
 
     public void addProductsToCart(List<ProductDto> addedProducts, CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
+        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto(1L, "TestCart", new ArrayList<>()));
         resultCart.getProducts().addAll(addedProducts);
         cartRepository.save(resultCart);
     }
 
     public void removeProductFromCart(ProductDto productToBeRemoved, CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
+        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto(1L, "TestCart", new ArrayList<>()));
         List<ProductDto> listOfProducts = resultCart.getProducts();
         listOfProducts.remove(productToBeRemoved);
-        resultCart.setProducts(listOfProducts);
         cartRepository.save(resultCart);
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
-        return new OrderDto("");
+        return new OrderDto(1L, new ArrayList<String>());
     }
 
 
