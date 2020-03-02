@@ -1,8 +1,6 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.GroupDto;
-import com.kodilla.ecommercee.domain.GroupInterface;
-import com.kodilla.ecommercee.domain.GroupStub;
+import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,27 +17,27 @@ public class GroupServiceReal implements GroupService {
     }
 
     @Override
-    public List<GroupInterface> getAllGroups() {
+    public List<Group> getAllGroups() {
         return groupRepository.findAll();
     }
 
 //    TODO
-//    replace stub to real entity 
+//    replace group to real entity 
     @Override
-    public GroupInterface addGroup(String name) {
+    public Group addGroup(String name) {
         if(!groupRepository.findByName(name).isPresent()){
-            return groupRepository.save(new GroupStub(null, name));
+            return groupRepository.save(new Group(null, name));
         }
         return null;
     }
 
     @Override
-    public GroupInterface getGroupById(Long id) {
+    public Group getGroupById(Long id) {
         return groupRepository.findById(id).orElse(null);
     }
 
     @Override
-    public GroupInterface updateGroup(GroupInterface groupAfterChange) {
+    public Group updateGroup(Group groupAfterChange) {
         if(getGroupById(groupAfterChange.getId()) != null) {
             return groupRepository.save(groupAfterChange);
         }

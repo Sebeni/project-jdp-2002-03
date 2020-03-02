@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.repository;
 
-import com.kodilla.ecommercee.domain.GroupInterface;
+import com.kodilla.ecommercee.domain.Group;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface GroupRepository extends CrudRepository<GroupInterface, Long> {
+public interface GroupRepository extends CrudRepository<Group, Long> {
     
-    List<GroupInterface> findAll();
+    List<Group> findAll();
     
-    Optional<GroupInterface> findByName(String name);
+    Optional<Group> findByName(String name);
     
     
     
