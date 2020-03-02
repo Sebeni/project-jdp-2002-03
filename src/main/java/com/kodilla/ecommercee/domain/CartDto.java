@@ -1,59 +1,44 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-@Entity
-@Table
+
 public final class CartDto {
 
-    private Long id;
-    private String name;
-    private List<ProductDto> products;
+    private final Long id;
+    private final String name;
+    private final List<ProductDto> products;
 
-    public CartDto() {
-
-    }
-
-    public CartDto(final String name) {
+    public CartDto(final Long id, final String name, final List<ProductDto> products) {
+        this.id = id;
         this.name = name;
-        this.products = new ArrayList<>();
+
+        ProductDto tmpProduct = new ProductDto();
+        List<ProductDto> tmpProductList = new ArrayList<>();
+
+        Iterator<ProductDto> iterator = products.iterator();
+        while(iterator.hasNext()) {
+            tmpProduct = iterator.next();
+            tmpProductList.add(tmpProduct);
+        }
+        this.products = tmpProductList;
+
     }
 
-    @Column (unique = true)
-    @Id
-    @NotNull
-    @GeneratedValue
     public Long getId() {
         return id;
     }
 
-    @Column
+
     public String getName() {
         return name;
     }
 
-    @OneToMany(
-        targetEntity = ProductDto.class,
-            mappedBy = "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+
     public List<ProductDto> getProducts() {
-        return products;
+        return (List<ProductDto>) new ArrayList<>(products);
     }
 
-    private void setId(Long id) {
-        this.id = id;
-    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
-
-    public void setProducts(List<ProductDto> products) {
-        this.products = products;
-    }
 }
