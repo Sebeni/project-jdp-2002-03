@@ -2,21 +2,31 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Entity
-@Table(name = "PRODUCTS")
 public class Product {
-
-    private Long id;
-    private String description;
-
-    public Product() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(unique = true)
+    private Long id;
+
+    @Column
+    private String description;
+
+    //@ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    //private List<Order> orderList = new ArrayList<>();
+
+    //@ManyToOne
+    //private Group group;
+
+    //private List<Cart> cartList = new ArrayList<>();
+
+    public Product() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -25,7 +35,8 @@ public class Product {
         this.id = id;
     }
 
-    @Column(name = "DESCRIPTION")
+    //add all args constructor when Group, Order, Cart ready + getters & setters for all
+
     public String getDescription() {
         return description;
     }
@@ -33,4 +44,6 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
