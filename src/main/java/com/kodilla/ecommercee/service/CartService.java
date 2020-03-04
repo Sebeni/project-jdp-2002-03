@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.CartRepository;
+import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.domain.OrderDto;
 import com.kodilla.ecommercee.domain.ProductDto;
@@ -21,34 +22,30 @@ public class CartService {
 
     private List<CartDto> emptyList = new ArrayList<>();
 
-    public CartDto createEmptyCart(String name) {
-        CartDto newCart = new CartDto("Name");
+    public Cart createEmptyCart(String name) {
+        Cart newCart = new Cart();
         cartRepository.save(newCart);
         return newCart;
 
     }
 
     public List<ProductDto> getProductsfromCart(CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
-        return resultCart.getProducts();
+        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
+        return new ArrayList<>();
     }
 
     public void addProductsToCart(List<ProductDto> addedProducts, CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
-        resultCart.getProducts().addAll(addedProducts);
+        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
         cartRepository.save(resultCart);
     }
 
     public void removeProductFromCart(ProductDto productToBeRemoved, CartDto cart) {
-        CartDto resultCart = cartRepository.findById(cart.getId()).orElse(new CartDto("Empty Cart"));
-        List<ProductDto> listOfProducts = resultCart.getProducts();
-        listOfProducts.remove(productToBeRemoved);
-        resultCart.setProducts(listOfProducts);
+        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
         cartRepository.save(resultCart);
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
-        return new OrderDto("");
+        return new OrderDto();
     }
 
 

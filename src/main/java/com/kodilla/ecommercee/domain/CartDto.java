@@ -1,22 +1,23 @@
 package com.kodilla.ecommercee.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 
-public final class CartDto {
+public class CartDto {
 
-    private final Long id;
-    private final String name;
-    private final List<ProductDto> products;
+    private Long id;
+    private String name;
+    private List<ProductDto> products;
 
-    public CartDto(final Long id, final String name, final List<ProductDto> products) {
+    public CartDto() {
+    }
+
+    public CartDto(Long id, String name, List<ProductDto> products) {
         this.id = id;
         this.name = name;
-        this.products = new ArrayList<>();
-        this.products.addAll(products);
-
+        this.products = products;
     }
 
     public Long getId() {
@@ -30,7 +31,19 @@ public final class CartDto {
 
 
     public List<ProductDto> getProducts() {
-        return Collections.unmodifiableList(products);
+        return products;
     }
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProducts(List<ProductDto> products) {
+        this.products = products;
+    }
 }
