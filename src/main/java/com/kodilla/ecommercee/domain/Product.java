@@ -2,24 +2,23 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Entity
 @Table
-public class Cart {
+public class Product {
+
     @Id
     @NotNull
     @GeneratedValue
     @Column
     private Long id;
 
+    @Column
     private String name;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
-    private Set<Product> products;
+    @ManyToOne
+    @JoinColumn
+    private Cart cart;
 
 
 }

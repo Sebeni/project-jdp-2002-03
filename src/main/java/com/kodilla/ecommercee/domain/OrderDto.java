@@ -1,13 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
-
-import java.util.List;
-
->>>>>>> 85cf5127bf62d8e46ac093f0442f63cfe01b6493
 public final class OrderDto {
     private final Long id;
     private final List<String> orderedProductList;
@@ -24,9 +18,4 @@ public final class OrderDto {
     public List<String> getOrderedProductList() {
         return orderedProductList;
     }
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> 85cf5127bf62d8e46ac093f0442f63cfe01b6493
