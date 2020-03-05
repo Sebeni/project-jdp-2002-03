@@ -2,11 +2,11 @@ package com.kodilla.ecommercee.domain;
 
 import java.util.List;
 
-public final class OrderDto {
-    private final Long id;
-    private final List<String> orderedProductList;
+public class OrderDto {
+    private Long id;
+    private List<String> orderedProductList;
 
-    public OrderDto(final Long id, final List<String> orderedProductList) {
+    public OrderDto(Long id, List<String> orderedProductList) {
         this.id = id;
         this.orderedProductList = orderedProductList;
     }

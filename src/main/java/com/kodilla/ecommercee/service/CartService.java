@@ -43,8 +43,12 @@ public class CartService {
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
+<<<<<<< HEAD
         return new OrderDto(1L, new ArrayList<String>());
 
+=======
+        return new OrderDto(1L, new ArrayList<>());
+>>>>>>> f002bc792caac856e6bf62d35c3e13fa8f13f71e
     }
 
 
