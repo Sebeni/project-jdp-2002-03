@@ -16,6 +16,7 @@ public class Cart {
     private String name;
 
     @OneToMany(
+            targetEntity = Product.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
