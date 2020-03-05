@@ -45,7 +45,7 @@ public class CartService {
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
-        return new OrderDto();
+        return new OrderDto(1L, new ArrayList<>());
     }
 
 
