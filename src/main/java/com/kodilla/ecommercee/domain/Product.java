@@ -11,9 +11,6 @@ public class Product {
     @Column
     private Long id;
 
-    @Column
-    private String name;
-
     @ManyToOne
     @JoinColumn
     private Cart cart;
