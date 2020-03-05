@@ -1,55 +1,45 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
-@Entity
-@Table
-public final class CartDto {
+
+public class CartDto {
 
     private Long id;
     private String name;
     private List<ProductDto> products;
 
     public CartDto() {
-
     }
 
-    public CartDto(final String name) {
+    public CartDto(Long id, String name, List<ProductDto> products) {
+        this.id = id;
         this.name = name;
-        this.products = new ArrayList<>();
+        this.products = products;
     }
 
-    @Column (unique = true)
-    @Id
-    @NotNull
-    @GeneratedValue
     public Long getId() {
         return id;
     }
 
-    @Column
+
     public String getName() {
         return name;
     }
 
-    @OneToMany(
-        targetEntity = ProductDto.class,
-            mappedBy = "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+
     public List<ProductDto> getProducts() {
         return products;
     }
 
-    private void setId(Long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

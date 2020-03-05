@@ -20,7 +20,7 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.POST, value ="/createCart")
     public CartDto createCart(@RequestParam String name) {
-        return cartService.createEmptyCart(name);
+        return new CartDto();
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/getProductsFromCart", consumes = MediaType.APPLICATION_JSON_VALUE)
