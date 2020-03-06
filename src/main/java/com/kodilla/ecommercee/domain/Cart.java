@@ -1,19 +1,21 @@
 package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table
 public class Cart {
 
     @Id
     @GeneratedValue
-    @Column
     private Long id;
 
-    @Column
     private String name;
+
+    private String description;
+
+    private BigDecimal price;
 
     @OneToMany(
             targetEntity = Product.class,
@@ -21,6 +23,8 @@ public class Cart {
             cascade = CascadeType.ALL
     )
     private Set<Product> products;
+
+    private Long groupId;
 
     public Cart() {
     }
@@ -33,8 +37,20 @@ public class Cart {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
     public Set<Product> getProducts() {
         return products;
+    }
+
+    public Long getGroupId() {
+        return groupId;
     }
 
     public void setId(Long id) {
@@ -45,7 +61,19 @@ public class Cart {
         this.name = name;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 }
