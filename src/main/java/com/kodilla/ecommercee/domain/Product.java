@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -9,8 +10,8 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Cart cart;
+    @ManyToMany
+    private List<Cart> cart;
 
 
 }
