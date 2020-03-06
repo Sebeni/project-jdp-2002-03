@@ -1,12 +1,12 @@
 package com.kodilla.ecommercee.domain;
 
-public final class UserDto {
-    private final Long id;
-    private final String userName;
-    private final String lastname;
-    private final boolean blocked;
+public class UserDto {
+    private Long id;
+    private String userName;
+    private String lastname;
+    private boolean blocked;
 
-    public UserDto(final Long id, final String userName, final String lastname, final boolean blocked) {
+    public UserDto(Long id, String userName, String lastname, boolean blocked) {
         this.id = id;
         this.userName = userName;
         this.lastname = lastname;

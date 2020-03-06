@@ -10,7 +10,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1/users")
 public class UserController {
 
     private List<UserDto> users = new ArrayList<>();
