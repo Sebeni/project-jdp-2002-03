@@ -12,7 +12,4 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
-    private Cart cart;
-
 }
