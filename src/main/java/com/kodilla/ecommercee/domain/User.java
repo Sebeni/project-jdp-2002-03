@@ -2,8 +2,6 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class User {
@@ -21,17 +19,6 @@ public class User {
 
     @NotNull
     private boolean blocked;
-
-    @OneToMany(
-            targetEntity = Order.class,
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Order> orders = new ArrayList<>();
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Cart cart;
 
     public User(String userName, String lastname, boolean blocked) {
         this.userName = userName;
@@ -58,14 +45,6 @@ public class User {
         return blocked;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
     public void setId(Long userId) {
         this.id = userId;
     }
@@ -80,13 +59,5 @@ public class User {
 
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }
