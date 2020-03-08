@@ -1,10 +1,14 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.Key;
 import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.exception.UserNotAuthorisedException;
+import com.kodilla.ecommercee.exception.UserNotFoundException;
+import com.kodilla.ecommercee.mapper.UserMapper;
+import com.kodilla.ecommercee.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -13,27 +17,31 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/users")
 public class UserController {
 
-    private List<UserDto> users = new ArrayList<>();
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getAllUsers")
     public List<UserDto> getAllUsers() {
-        return users;
+        return userMapper.mapToUserDtoList(userService.getAllUsers());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser", consumes = APPLICATION_JSON_VALUE)
     public UserDto addUser(@RequestBody UserDto userToAdd) {
-        users.add(userToAdd);
-        return userToAdd;
+        return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userToAdd)));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
-    public UserDto blockUser(@RequestParam Long userId ) {
-        return new UserDto(userId, "Jan", "Kowalski", true);
+    public UserDto blockUser(@RequestParam Long id) throws UserNotFoundException {
+        UserDto userToBlock = userMapper.mapToUserDto(userService.getUserById(id).orElseThrow(UserNotFoundException::new));
+        userToBlock.setBlocked(true);
+        return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userToBlock)));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getKey")
-    public Long getKey(@RequestParam Long userId) {
-        Random random = new Random();
-        return random.nextLong();
+    public Key getKey(@RequestParam Long id, String userName) throws UserNotFoundException, UserNotAuthorisedException {
+        return userService.getKey(id, userName);
     }
 }
