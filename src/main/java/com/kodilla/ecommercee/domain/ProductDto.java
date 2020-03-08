@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,5 +16,6 @@ public class ProductDto {
     private Group group;
     private List<Order> orderList = new ArrayList<>();
     private List<Cart> cartList = new ArrayList<>();
+
 
 }
