@@ -31,7 +31,7 @@ public class Product {
         this.id = id;
         this.description = description;
         this.group = group;
-        this. orderList = orderList;
+        this.orderList = orderList;
         this.cartList = cartList;
     }
 
