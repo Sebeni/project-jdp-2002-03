@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-<<<<<<< HEAD
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -61,7 +60,4 @@ public class User {
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
-=======
-public class User {
->>>>>>> master
 }
