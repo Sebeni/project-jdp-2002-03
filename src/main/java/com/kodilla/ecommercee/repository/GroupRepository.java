@@ -15,7 +15,4 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
     List<Group> findAll();
     
     Optional<Group> findByName(String name);
-    
-    
-    
 }
