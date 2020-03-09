@@ -1,9 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Entity
 public class Cart {
@@ -15,7 +13,8 @@ public class Cart {
     private String name;
 
     @ManyToMany
-    private List<Product> products;
+    @MapKeyColumn
+    private Map<Integer,Product> products;
 
     @OneToOne
     private User user;
@@ -36,7 +35,7 @@ public class Cart {
     }
 
 
-    public List<Product> getProducts() {
+    public Map<Integer, Product> getProducts() {
         return products;
     }
 
@@ -53,7 +52,7 @@ public class Cart {
     }
 
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Map<Integer, Product> products) {
         this.products = products;
     }
 
