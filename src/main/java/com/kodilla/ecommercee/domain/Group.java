@@ -1,25 +1,21 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "groups")
 public class Group {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
+    @Column
     private String name;
 
-    public Group(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-    
     public Group() {
+    }
+
+    public Group(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -30,11 +26,11 @@ public class Group {
         return name;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 }
