@@ -13,5 +13,10 @@ public class Product {
     @ManyToMany
     private List<Cart> cart;
 
+    public Product() {
+    }
 
+    public List<Cart> getCart() {
+        return cart;
+    }
 }

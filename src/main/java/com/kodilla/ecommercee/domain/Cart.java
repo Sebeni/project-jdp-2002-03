@@ -12,9 +12,11 @@ public class Cart {
 
     private String name;
 
-    @ManyToMany
-    @MapKeyColumn
-    private Map<Integer,Product> products;
+    @ElementCollection
+    @CollectionTable
+    @MapKeyJoinColumn
+    @Column
+    private Map<Product, Integer> products;
 
     @OneToOne
     private User user;
@@ -35,7 +37,7 @@ public class Cart {
     }
 
 
-    public Map<Integer, Product> getProducts() {
+    public Map<Product, Integer> getProducts() {
         return products;
     }
 
@@ -52,7 +54,7 @@ public class Cart {
     }
 
 
-    public void setProducts(Map<Integer, Product> products) {
+    public void setProducts(Map<Product, Integer> products) {
         this.products = products;
     }
 
