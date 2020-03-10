@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.domain.NoProductException;
+import com.kodilla.ecommercee.exceptions.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/product")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired
@@ -24,8 +25,8 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getProductById")
-    public ProductDto getProductById(@RequestParam Long productId) throws NoProductException {
-        return productMapper.mapToProductDto(productService.getProduct(productId).orElseThrow(NoProductException::new));
+    public ProductDto getProductById(@RequestParam Long productId) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(productService.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createProduct")
