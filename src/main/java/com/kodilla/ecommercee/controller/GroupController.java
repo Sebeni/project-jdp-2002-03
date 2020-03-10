@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.GroupDto;
-import com.kodilla.ecommercee.exception.GroupNotFoundException;
 import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +29,12 @@ public class GroupController {
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/getGroupById")
-    public GroupDto getGroupById(@RequestParam Long id) throws GroupNotFoundException {
+    public GroupDto getGroupById(@RequestParam Long id) {
         return groupMapper.mapToGroupDto(groupService.getGroupById(id));
     }
     
     @RequestMapping(method = RequestMethod.PUT, value = "/updateGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GroupDto updateGroup(@RequestBody GroupDto groupAfterChange) throws GroupNotFoundException {
+    public GroupDto updateGroup(@RequestBody GroupDto groupAfterChange) {
         return groupMapper.mapToGroupDto(groupService.updateGroup(groupMapper.mapToGroup(groupAfterChange)));
     }
 }

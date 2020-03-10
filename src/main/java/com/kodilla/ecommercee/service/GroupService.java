@@ -18,14 +18,14 @@ public class GroupService {
     }
 
     public Group addGroup(String name) {
-        return groupRepository.save(new Group(null, name));
+        return groupRepository.save(new Group(name));
     }
 
-    public Group getGroupById(Long id) throws GroupNotFoundException {
+    public Group getGroupById(Long id) {
         return groupRepository.findById(id).orElseThrow(GroupNotFoundException::new);
     }
 
-    public Group updateGroup(Group groupAfterChange) throws GroupNotFoundException {
+    public Group updateGroup(Group groupAfterChange) {
         if (groupRepository.existsById(groupAfterChange.getId())) {
             return groupRepository.save(groupAfterChange);
         } else {
