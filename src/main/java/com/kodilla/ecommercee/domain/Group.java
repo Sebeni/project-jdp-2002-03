@@ -2,7 +2,7 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "groups")
+@Entity(name = "groups_of_products")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
