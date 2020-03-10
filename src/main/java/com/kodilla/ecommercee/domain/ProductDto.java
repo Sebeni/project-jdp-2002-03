@@ -1,5 +1,12 @@
 package com.kodilla.ecommercee.domain;
 
+<<<<<<< HEAD
+=======
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+>>>>>>> 5442fe577dcaa07a53b9d4f5bd035de9b4ec7b05
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +18,7 @@ public class ProductDto {
     private List<Order> orderList = new ArrayList<>();
     private List<Cart> cartList = new ArrayList<>();
 
+<<<<<<< HEAD
     public ProductDto() {
     }
 
@@ -41,4 +49,7 @@ public class ProductDto {
     public List<Cart> getCartList() {
         return cartList;
     }
+=======
+
+>>>>>>> 5442fe577dcaa07a53b9d4f5bd035de9b4ec7b05
 }

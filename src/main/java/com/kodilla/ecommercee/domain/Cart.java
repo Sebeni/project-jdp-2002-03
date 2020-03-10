@@ -13,4 +13,5 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
+
 }
