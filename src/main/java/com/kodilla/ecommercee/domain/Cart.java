@@ -1,11 +1,15 @@
 package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table
 public class Cart {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @GeneratedValue
+    @Column
     private Long id;
+
 }
