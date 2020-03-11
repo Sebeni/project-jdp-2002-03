@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 public class Key {
     private Long value;
     private LocalDateTime validFrom;
-    private LocalDateTime getValidTo;
+    private LocalDateTime validTo;
 
-    public Key(Long value, LocalDateTime validFrom, LocalDateTime getValidTo) {
+    public Key(Long value, LocalDateTime validFrom, LocalDateTime validTo) {
         this.value = value;
         this.validFrom = validFrom;
-        this.getValidTo = getValidTo;
+        this.validTo = validTo;
     }
 }
