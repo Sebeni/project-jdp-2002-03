@@ -10,13 +10,7 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    private List<Cart> cart;
-
     public Product() {
     }
 
-    public List<Cart> getCart() {
-        return cart;
-    }
 }
