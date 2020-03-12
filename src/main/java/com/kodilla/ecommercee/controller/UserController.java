@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Key;
 import com.kodilla.ecommercee.domain.UserDto;
@@ -34,14 +34,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
-    public UserDto blockUser(@RequestParam Long id) throws UserNotFoundException {
+    public UserDto blockUser(@RequestParam Long id) {
         UserDto userToBlock = userMapper.mapToUserDto(userService.getUserById(id).orElseThrow(UserNotFoundException::new));
         userToBlock.setBlocked(true);
         return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userToBlock)));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getKey")
-    public Key getKey(@RequestParam Long id, String userName) throws UserNotFoundException, UserNotAuthorisedException {
+    public Key getKey(@RequestParam Long id, String userName) {
         return userService.getKey(id, userName);
     }
 }

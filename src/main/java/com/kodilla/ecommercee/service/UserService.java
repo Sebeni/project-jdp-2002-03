@@ -30,7 +30,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Key getKey(Long id, String userName) throws UserNotFoundException, UserNotAuthorisedException {
+    public Key getKey(Long id, String userName) {
         User userOfKey = getUserById(id).orElseThrow(UserNotFoundException::new) ;
         if (userName.equals(userOfKey.getUserName())) {
             Random random = new Random();

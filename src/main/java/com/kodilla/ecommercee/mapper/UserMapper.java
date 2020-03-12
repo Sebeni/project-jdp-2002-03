@@ -27,7 +27,7 @@ public class UserMapper {
 
     public List<UserDto> mapToUserDtoList(final List<User> userList) {
         return userList.stream()
-                .map(user -> new UserDto(user.getId(), user.getUserName(), user.getUserKey(), user.isBlocked()))
+                .map(this::mapToUserDto)
                 .collect(Collectors.toList());
     }
 }

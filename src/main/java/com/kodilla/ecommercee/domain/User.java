@@ -46,15 +46,15 @@ public class User {
         return blocked;
     }
 
-    public void setId(Long userId) {
-        this.id = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public void setUserKey(String lastname) {
+    public void setUserKey(Long userKey) {
         this.userKey = userKey;
     }
 
