@@ -1,53 +1,36 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.GroupDto;
+import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.exception.GroupNotFoundException;
+import com.kodilla.ecommercee.repository.GroupRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-//TODO
-//implement real service
-//change return type to Group class when created
 
 @Service
 public class GroupService {
-    private List<GroupDto> dummyRepo = new ArrayList<>();
-    
-    public GroupService() {
-        dummyRepo.add(new GroupDto(1L, "Ubrania"));
-        dummyRepo.add(new GroupDto(2L, "Dodatki"));
-        dummyRepo.add(new GroupDto(3L, "Biżuteria"));
-        dummyRepo.add(new GroupDto(4L, "Obuwie"));
-    }
-    
-    public List<GroupDto> getAllGroups() {
-        return dummyRepo;
+    @Autowired
+    private GroupRepository groupRepository;
+
+    public List<Group> getAllGroups() {
+        return groupRepository.findAll();
     }
 
+    public Group addGroup(String name) {
+        return groupRepository.save(new Group(name));
+    }
 
-    public GroupDto addGroup(String name) {
-        long lastId = dummyRepo.get(dummyRepo.size() - 1).getId();
-        GroupDto newGroupToAdd = new GroupDto(lastId + 1, name);
-        dummyRepo.add(newGroupToAdd);
-        return newGroupToAdd;
+    public Group getGroupById(Long id) {
+        return groupRepository.findById(id).orElseThrow(GroupNotFoundException::new);
     }
-    
-    public GroupDto getGroupById(Long id) {
-        return dummyRepo.stream()
-                .filter(groupDto -> groupDto.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-    
-    public GroupDto updateGroup(GroupDto groupAfterChange) {
-        GroupDto groupBeforeChange = getGroupById(groupAfterChange.getId());
-        if(groupBeforeChange != null) {
-            int indexToChange = dummyRepo.indexOf(groupBeforeChange);
-            dummyRepo.set(indexToChange, groupAfterChange);
-            return dummyRepo.get(indexToChange);
+
+    public Group updateGroup(Group groupAfterChange) {
+        if (groupRepository.existsById(groupAfterChange.getId())) {
+            return groupRepository.save(groupAfterChange);
         } else {
-            return null;
+            throw new GroupNotFoundException();
         }
+
     }
 }

@@ -1,17 +1,24 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity(name = "groups_of_products")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column
+    
     private String name;
 
     public Group() {
+    }
+
+    public Group(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Group(String name) {
