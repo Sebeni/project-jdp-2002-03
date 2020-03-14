@@ -15,14 +15,15 @@ public class User {
     private String userName;
 
     @NotNull
-    private String lastname;
+    private Long userKey;
 
     @NotNull
     private boolean blocked;
 
-    public User(String userName, String lastname, boolean blocked) {
+    public User(Long id, String userName, Long userKey, boolean blocked) {
+        this.id = id;
         this.userName = userName;
-        this.lastname = lastname;
+        this.userKey = userKey;
         this.blocked = blocked;
     }
 
@@ -37,24 +38,24 @@ public class User {
         return userName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public Long getUserKey() {
+        return userKey;
     }
 
     public boolean isBlocked() {
         return blocked;
     }
 
-    public void setId(Long userId) {
-        this.id = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setUserKey(Long userKey) {
+        this.userKey = userKey;
     }
 
     public void setBlocked(boolean blocked) {
