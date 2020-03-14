@@ -24,24 +24,20 @@ public class CartService {
 
     public Cart createEmptyCart(String name) {
         Cart newCart = new Cart();
-        cartRepository.save(newCart);
         return newCart;
 
     }
 
-    public List<ProductDto> getProductsfromCart(CartDto cart) {
-        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
+    public List<ProductDto> getProductsfromCart(Long cartId) {
         return new ArrayList<>();
     }
 
-    public void addProductsToCart(List<ProductDto> addedProducts, CartDto cart) {
-        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
-        cartRepository.save(resultCart);
+    public void addProductsToCart(List<ProductDto> addedProducts, Long cartId) {
+
     }
 
-    public void removeProductFromCart(ProductDto productToBeRemoved, CartDto cart) {
-        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
-        cartRepository.save(resultCart);
+    public void removeProductsFromCart(List<ProductDto> productToBeRemoved, Long cartId1) {
+
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
