@@ -50,8 +50,15 @@ public class Cart {
         Integer qty =0;
 
         if (products.containsKey(productToBeRemoved)) {
-            qty = products.get(productToBeRemoved)-1;
-            products.replace(productToBeRemoved, qty);
+            qty = products.get(productToBeRemoved);
+            if (qty > 1) {
+                qty--;
+                products.replace(productToBeRemoved, qty);
+            }
+            else
+            {
+                products.remove(productToBeRemoved);
+            }
         }
 
     }
