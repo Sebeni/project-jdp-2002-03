@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.exceptions.ProductNotFoundException;
+import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getProductById")
-    public ProductDto getProductById(@RequestParam Long productId) throws ProductNotFoundException {
+    public ProductDto getProductById(@RequestParam Long productId) {
         return productMapper.mapToProductDto(productService.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 

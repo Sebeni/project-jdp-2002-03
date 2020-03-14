@@ -15,22 +15,22 @@ public class Product {
 
     private String description;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Order> orderList = new ArrayList<>();
 
     @ManyToOne
-    private Group group;
+    private ProductGroup productGroup;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Cart> cartList = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(Long id, String description, Group group, List<Order> orderList, List<Cart> cartList) {
+    public Product(Long id, String description, ProductGroup productGroup, List<Order> orderList, List<Cart> cartList) {
         this.id = id;
         this.description = description;
-        this.group = group;
+        this.productGroup = productGroup;
         this.orderList = orderList;
         this.cartList = cartList;
     }
@@ -59,12 +59,12 @@ public class Product {
         this.orderList = orderList;
     }
 
-    public Group getGroup() {
-        return group;
+    public ProductGroup getProductGroup() {
+        return productGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setProductGroup(ProductGroup productGroup) {
+        this.productGroup = productGroup;
     }
 
     public List<Cart> getCartList() {
