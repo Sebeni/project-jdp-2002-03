@@ -33,15 +33,15 @@ public class CartService {
 
     }
 
-<<<<<<< HEAD
     public void removeProductFromCart(ProductDto productToBeRemoved, CartDto cart) {
 
         Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
         cartRepository.save(resultCart);
-=======
-    public void removeProductsFromCart(List<ProductDto> productToBeRemoved, Long cartId1) {
 
->>>>>>> 742aa5c099ab0145daa1b105528ee1810daa444e
+    }
+
+    public void removeProductsFromCart(List<ProductDto> productToBeRemoved, Long cartId) {
+
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {

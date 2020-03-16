@@ -11,8 +11,6 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
-    private String name;
-
     @ElementCollection
     @CollectionTable
     @MapKeyJoinColumn
@@ -68,10 +66,6 @@ public class Cart {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private Map<Product, Integer> getProducts() {
         return products;
     }
@@ -83,11 +77,6 @@ public class Cart {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     private void setProducts(Map<Product, Integer> products) {
         this.products = products;
