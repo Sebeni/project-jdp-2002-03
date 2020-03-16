@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "product_order_list")
+@Entity(name = "orders")
 public class Order {
 
     @Id
