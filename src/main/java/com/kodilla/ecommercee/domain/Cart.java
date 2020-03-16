@@ -32,11 +32,9 @@ public class Cart {
 
     public void addProduct(Product productToBeAdded) {
 
-        Integer qty = 0;
-
         if (products.containsKey(productToBeAdded)) {
-            qty = products.get(productToBeAdded)+1;
-            products.replace(productToBeAdded,qty);
+            Integer adjustedQty = products.get(productToBeAdded)+1;
+            products.replace(productToBeAdded,adjustedQty);
         }
         else {
             products.put(productToBeAdded,1);
@@ -45,13 +43,11 @@ public class Cart {
 
     public void removeProduct(Product productToBeRemoved) {
 
-        Integer qty =0;
-
         if (products.containsKey(productToBeRemoved)) {
-            qty = products.get(productToBeRemoved);
-            if (qty > 1) {
-                qty--;
-                products.replace(productToBeRemoved, qty);
+            Integer currentQty = products.get(productToBeRemoved);
+            if (currentQty > 1) {
+                currentQty--;
+                products.replace(productToBeRemoved, currentQty);
             }
             else
             {
@@ -66,20 +62,12 @@ public class Cart {
         return id;
     }
 
-    private Map<Product, Integer> getProducts() {
-        return products;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    private void setProducts(Map<Product, Integer> products) {
-        this.products = products;
     }
 
     public void setUser(User user) {
