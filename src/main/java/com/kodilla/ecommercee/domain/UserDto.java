@@ -1,33 +1,16 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+public class UserDto {
     private Long id;
-
-    @NotNull
     private String userName;
-
-    @NotNull
     private Long userKey;
-
-    @NotNull
     private boolean blocked;
 
-    public User(Long id, String userName, Long userKey, boolean blocked) {
+    public UserDto(Long id, String userName, Long userKey, boolean blocked) {
         this.id = id;
         this.userName = userName;
         this.userKey = userKey;
         this.blocked = blocked;
-    }
-
-    public User() {
     }
 
     public Long getId() {
@@ -42,9 +25,7 @@ public class User {
         return userKey;
     }
 
-    public boolean isBlocked() {
-        return blocked;
-    }
+    public boolean isBlocked() { return blocked; }
 
     public void setId(Long id) {
         this.id = id;
