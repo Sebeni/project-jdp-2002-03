@@ -15,24 +15,16 @@ public class Product {
 
     private String description;
 
-    @ManyToMany
-    private List<Order> orderList = new ArrayList<>();
-
     @ManyToOne
     private Group group;
-
-    @ManyToMany
-    private List<Cart> cartList = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(Long id, String description, Group group, List<Order> orderList, List<Cart> cartList) {
+    public Product(Long id, String description, Group group) {
         this.id = id;
         this.description = description;
         this.group = group;
-        this.orderList = orderList;
-        this.cartList = cartList;
     }
 
     public Long getId() {
@@ -51,27 +43,11 @@ public class Product {
         this.description = description;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
     public Group getGroup() {
         return group;
     }
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public List<Cart> getCartList() {
-        return cartList;
-    }
-
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
     }
 }

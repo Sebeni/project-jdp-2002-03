@@ -14,23 +14,19 @@ public class ProductMapper {
         return new Product(
                 productDto.getId(),
                 productDto.getDescription(),
-                productDto.getGroup(),
-                productDto.getOrderList(),
-                productDto.getCartList());
+                productDto.getGroup());
     }
 
     public ProductDto mapToProductDto(final Product product) {
         return new ProductDto(
                 product.getId(),
                 product.getDescription(),
-                product.getGroup(),
-                product.getOrderList(),
-                product.getCartList());
+                product.getGroup());
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
         return productList.stream()
-                .map(p -> new ProductDto(p.getId(), p.getDescription(), p.getGroup(), p.getOrderList(), p.getCartList()))
+                .map(p -> new ProductDto(p.getId(), p.getDescription(), p.getGroup()))
                 .collect(Collectors.toList());
     }
 
