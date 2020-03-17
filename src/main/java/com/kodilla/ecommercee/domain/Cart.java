@@ -1,27 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
-<<<<<<< HEAD
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
-=======
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
->>>>>>> cb330760f240c4a83c360f9fe4a4897ad66c41df
 
 @Entity
 public class Cart {
 
     @Id
-<<<<<<< HEAD
-    @GeneratedValue
-=======
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
->>>>>>> cb330760f240c4a83c360f9fe4a4897ad66c41df
     private Long id;
 
     @ElementCollection
