@@ -23,7 +23,7 @@ public class GroupMapper {
                 .map(this::mapToGroup)
                 .collect(Collectors.toList());
     }
-    
+
     public List<GroupDto> mapToGroupDtoList(final List<ProductGroup> productGroupList) {
         return productGroupList.stream()
                 .map(this::mapToGroupDto)
