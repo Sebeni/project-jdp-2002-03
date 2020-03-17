@@ -14,11 +14,6 @@ public class Product {
     @NotNull
     private Long id;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 2c51280f34191a5052db937b24e05e87dd276579
     private String name;
 
     private String description;
@@ -78,8 +73,4 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-<<<<<<< HEAD
-=======
->>>>>>> cb330760f240c4a83c360f9fe4a4897ad66c41df
->>>>>>> 2c51280f34191a5052db937b24e05e87dd276579
 }
