@@ -11,12 +11,12 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Long id;
 
     @NotNull
     private String number;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 

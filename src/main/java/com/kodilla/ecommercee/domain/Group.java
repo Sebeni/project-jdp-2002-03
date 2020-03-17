@@ -40,4 +40,5 @@ public class Group {
     private void setName(String name) {
         this.name = name;
     }
+
 }
