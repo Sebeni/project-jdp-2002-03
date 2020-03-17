@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.CartRepository;
+import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.domain.OrderDto;
@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.Optional.ofNullable;
 
 @Service
 public class CartService {
@@ -23,9 +20,9 @@ public class CartService {
     private List<CartDto> emptyList = new ArrayList<>();
 
     public Cart createEmptyCart(String name) {
+
         Cart newCart = new Cart();
         return newCart;
-
     }
 
     public List<ProductDto> getProductsfromCart(Long cartId) {
@@ -36,11 +33,19 @@ public class CartService {
 
     }
 
-    public void removeProductsFromCart(List<ProductDto> productToBeRemoved, Long cartId1) {
+    public void removeProductFromCart(ProductDto productToBeRemoved, CartDto cart) {
+
+        Cart resultCart = cartRepository.findById(cart.getId()).orElse(new Cart());
+        cartRepository.save(resultCart);
+
+    }
+
+    public void removeProductsFromCart(List<ProductDto> productToBeRemoved, Long cartId) {
 
     }
 
     public OrderDto createOrderFromCart(CartDto cart) {
+
         return new OrderDto(1L, new ArrayList<>());
     }
 

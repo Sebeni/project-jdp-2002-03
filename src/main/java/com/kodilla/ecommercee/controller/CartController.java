@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 
 import com.kodilla.ecommercee.domain.CartDto;
@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/carts")
 @CrossOrigin(origins = "*")
+
 public class CartController {
 
     @Autowired
