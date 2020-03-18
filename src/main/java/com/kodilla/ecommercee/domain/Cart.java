@@ -16,8 +16,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
-
-    @ElementCollection
+    
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
     @Column
@@ -78,5 +78,9 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
     }
 }
