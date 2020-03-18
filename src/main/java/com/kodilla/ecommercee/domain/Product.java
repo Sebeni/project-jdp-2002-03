@@ -2,37 +2,33 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
+
+    private String name;
 
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Order> orderList = new ArrayList<>();
+    private BigDecimal price;
 
     @ManyToOne
-    private ProductGroup productGroup;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Cart> cartList = new ArrayList<>();
+    private Group group;
 
     public Product() {
     }
 
-    public Product(Long id, String description, ProductGroup productGroup, List<Order> orderList, List<Cart> cartList) {
+    public Product(Long id, String name, String description, BigDecimal price, Group group) {
         this.id = id;
+        this.name = name;
         this.description = description;
-        this.productGroup = productGroup;
-        this.orderList = orderList;
-        this.cartList = cartList;
+        this.price = price;
+        this.group = group;
     }
 
     public Long getId() {
@@ -51,28 +47,29 @@ public class Product {
         this.description = description;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+
+    public Group getGroup() {
+        return group;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    public ProductGroup getProductGroup() {
-        return productGroup;
+    public String getName() {
+        return name;
     }
 
-    public void setProductGroup(ProductGroup productGroup) {
-        this.productGroup = productGroup;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
 

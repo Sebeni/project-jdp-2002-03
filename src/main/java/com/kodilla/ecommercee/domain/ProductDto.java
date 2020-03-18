@@ -1,25 +1,25 @@
 package com.kodilla.ecommercee.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 public class ProductDto {
 
     private Long id;
+    private String name;
     private String description;
-    private ProductGroup productGroup;
-    private List<Order> orderList = new ArrayList<>();
-    private List<Cart> cartList = new ArrayList<>();
+    private BigDecimal price;
+    private Group group;
 
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String description, ProductGroup productGroup, List<Order> orderList, List<Cart> cartList) {
+
+    public ProductDto(Long id, String name, String description, BigDecimal price, Group group) {
         this.id = id;
+        this.name = name;
         this.description = description;
-        this.productGroup = productGroup;
-        this.orderList = orderList;
-        this.cartList = cartList;
+        this.price = price;
+        this.group = group;
     }
 
     public Long getId() {
@@ -30,17 +30,36 @@ public class ProductDto {
         return description;
     }
 
-    public ProductGroup getProductGroup() {
-        return productGroup;
+    public Group getGroup() {
+        return group;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
-
 

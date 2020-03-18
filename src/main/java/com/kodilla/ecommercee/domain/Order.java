@@ -17,7 +17,6 @@ public class Order {
     @NotNull
     private String number;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
