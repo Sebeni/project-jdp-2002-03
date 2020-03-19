@@ -16,7 +16,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
-    
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
@@ -35,34 +35,26 @@ public class Cart {
         this.products = new HashMap<>();
     }
 
-
     public void addProduct(Product productToBeAdded) {
-
         if (products.containsKey(productToBeAdded)) {
-            Integer adjustedQty = products.get(productToBeAdded)+1;
-            products.replace(productToBeAdded,adjustedQty);
-        }
-        else {
-            products.put(productToBeAdded,1);
+            Integer adjustedQty = products.get(productToBeAdded) + 1;
+            products.replace(productToBeAdded, adjustedQty);
+        } else {
+            products.put(productToBeAdded, 1);
         }
     }
 
     public void removeProduct(Product productToBeRemoved) {
-
         if (products.containsKey(productToBeRemoved)) {
             Integer currentQty = products.get(productToBeRemoved);
             if (currentQty > 1) {
                 currentQty--;
                 products.replace(productToBeRemoved, currentQty);
-            }
-            else
-            {
+            } else {
                 products.remove(productToBeRemoved);
             }
         }
-
     }
-
 
     public Long getId() {
         return id;

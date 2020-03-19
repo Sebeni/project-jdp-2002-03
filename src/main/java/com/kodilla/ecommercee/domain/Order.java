@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity(name = "orders")
@@ -28,21 +29,21 @@ public class Order {
     
     @ManyToOne
     private User user;
-    
+
     public Order() {
     }
-    
+
     public Order(Cart cart) {
         this(cart.getProducts(), cart.getUser());
     }
-    
+
     public Order(Map<Product, Integer> products, User user) {
-        this.products = products;
+        this.products = new HashMap<>(products);
         this.user = user;
         this.orderDate = LocalDate.now();
         this.number = System.currentTimeMillis() + user.getId().toString();
     }
-    
+
     public Long getId() {
         return id;
     }
