@@ -1,11 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-<<<<<<< HEAD
-import com.kodilla.ecommercee.domain.ProductGroup;
-=======
 import com.kodilla.ecommercee.domain.Group;
->>>>>>> 872dd384919b52a37396d0af9a90b6ffddac7101
 import com.kodilla.ecommercee.domain.GroupDto;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import org.junit.After;
@@ -33,15 +29,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class GroupControllerTest {
     private final static String controllerPath = "/v1/groups";
-<<<<<<< HEAD
-    private ProductGroup clothes;
-    private ProductGroup jewelry;
-    private ProductGroup shoes;
-=======
     private Group clothes;
     private Group jewelry;
     private Group shoes;
->>>>>>> 872dd384919b52a37396d0af9a90b6ffddac7101
 
     @Autowired
     private GroupRepository groupRepository;
@@ -51,15 +41,9 @@ public class GroupControllerTest {
 
     @Before
     public void setUp() {
-<<<<<<< HEAD
-        clothes = groupRepository.save(new ProductGroup("Ubrania"));
-        jewelry = groupRepository.save(new ProductGroup("Biżuteria"));
-        shoes = groupRepository.save(new ProductGroup("Obuwie"));
-=======
         clothes = groupRepository.save(new Group("Ubrania"));
         jewelry = groupRepository.save(new Group("Biżuteria"));
         shoes = groupRepository.save(new Group("Obuwie"));
->>>>>>> 872dd384919b52a37396d0af9a90b6ffddac7101
     }
 
     @After
