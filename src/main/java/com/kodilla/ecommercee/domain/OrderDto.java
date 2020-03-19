@@ -6,14 +6,12 @@ import java.util.Map;
 
 public class OrderDto {
     private Long id;
-    private String number;
     private List<Product> products;
     private LocalDate orderDate;
     private User user;
 
-    public OrderDto(Long id, String number, List<Product> products, LocalDate orderDate, User user) {
+    public OrderDto(Long id, List<Product> products, LocalDate orderDate, User user) {
         this.id = id;
-        this.number = number;
         this.products = products;
         this.orderDate = orderDate;
         this.user = user;
@@ -25,14 +23,6 @@ public class OrderDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public List<Product> getProducts() {

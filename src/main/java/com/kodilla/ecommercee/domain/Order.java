@@ -14,10 +14,6 @@ public class Order {
     @NotNull
     private Long id;
 
-    @NotNull
-    @Column(updatable = false)
-    private String number;
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
@@ -42,7 +38,6 @@ public class Order {
         this.products = new HashMap<>(products);
         this.user = user;
         this.orderDate = LocalDate.now();
-        this.number = System.currentTimeMillis() + user.getId().toString();
     }
 
     public Long getId() {
@@ -51,14 +46,6 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public Map<Product, Integer> getProducts() {

@@ -32,7 +32,6 @@ public class OrderMapper {
 
     public OrderDto mapToOrderDto(final Order order) {
         return new OrderDto(order.getId(),
-                order.getNumber(),
                 convertMapToList(order.getProducts()),
                 order.getOrderDate(),
                 order.getUser());
