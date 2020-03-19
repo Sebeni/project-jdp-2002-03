@@ -34,10 +34,11 @@ public class Order {
     }
 
     public Order(Cart cart) {
-        this(cart.getProducts(), cart.getUser());
+        this(null, cart.getProducts(), cart.getUser());
     }
 
-    public Order(Map<Product, Integer> products, User user) {
+    public Order(Long id, Map<Product, Integer> products, User user) {
+        this.id = id;
         this.products = new HashMap<>(products);
         this.user = user;
         this.orderDate = LocalDate.now();

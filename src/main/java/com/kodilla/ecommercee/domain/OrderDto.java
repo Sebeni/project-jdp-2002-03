@@ -7,11 +7,11 @@ import java.util.Map;
 public class OrderDto {
     private Long id;
     private String number;
-    private Map<Product, Integer> products;
+    private List<Product> products;
     private LocalDate orderDate;
     private User user;
 
-    public OrderDto(Long id, String number, Map<Product, Integer> products, LocalDate orderDate, User user) {
+    public OrderDto(Long id, String number, List<Product> products, LocalDate orderDate, User user) {
         this.id = id;
         this.number = number;
         this.products = products;
@@ -35,11 +35,11 @@ public class OrderDto {
         this.number = number;
     }
 
-    public Map<Product, Integer> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Product, Integer> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
