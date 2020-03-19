@@ -18,6 +18,7 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductTestSuite {
+
     @Autowired
     ProductRepository productRepository;
     @Autowired
@@ -30,23 +31,17 @@ public class ProductTestSuite {
     private ArrayList<Long> orderIdsList = new ArrayList<>();
 
     @After
-    public void deleteProducts() {
+    public void deleteAll() {
         if(!productIdList.isEmpty()) {
             productIdList.forEach(id -> productRepository.deleteById(id));
         }
         this.productIdList.clear();
-    }
 
-    @After
-    public void deleteGroups() {
         if(!groupIdList.isEmpty()) {
             groupIdList.forEach(id -> groupRepository.deleteById(id));
         }
         this.groupIdList.clear();
-    }
 
-    @After
-    public void deleteOrders() {
         if(!orderIdsList.isEmpty()) {
             orderIdsList.forEach(id -> orderRepository.deleteById(id));
         }
