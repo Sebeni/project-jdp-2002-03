@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CartMapper {
 
-    public Cart mapToCart(CartDto cartDto) {
+    public Cart mapToCart(final CartDto cartDto) {
 
         Cart cartToBeReturned = new Cart();
 
@@ -18,7 +18,7 @@ public class CartMapper {
         return cartToBeReturned;
     }
 
-    public CartDto mapToCartDto(Cart cart) {
+    public CartDto mapToCartDto(final Cart cart) {
 
         CartDto cartDtoToBeReturned = new CartDto();
 
