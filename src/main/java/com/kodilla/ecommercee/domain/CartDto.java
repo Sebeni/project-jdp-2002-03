@@ -6,15 +6,12 @@ import java.util.List;
 public class CartDto {
 
     private Long id;
-    private String name;
-    private List<ProductDto> products;
+    private List<Product> products;
 
     public CartDto() {
     }
 
-    public CartDto(Long id, String name, List<ProductDto> products) {
-        this.id = id;
-        this.name = name;
+    public CartDto(List<Product> products) {
         this.products = products;
     }
 
@@ -22,13 +19,7 @@ public class CartDto {
         return id;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-
-    public List<ProductDto> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
@@ -37,11 +28,7 @@ public class CartDto {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setProducts(List<ProductDto> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
