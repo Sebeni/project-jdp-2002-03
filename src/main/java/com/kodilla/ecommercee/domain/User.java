@@ -2,6 +2,8 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -15,13 +17,20 @@ public class User {
     private String userName;
 
     @NotNull
-    private Long userKey;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Key> userKey = new HashSet<>();
 
     @NotNull
     private boolean blocked;
 
-    public User(Long id, String userName, Long userKey, boolean blocked) {
+    public User(Long id, String userName, Set<Key> userKey, boolean blocked) {
         this.id = id;
+        this.userName = userName;
+        this.userKey = userKey;
+        this.blocked = blocked;
+    }
+
+    public User(String userName, Set<Key> userKey, boolean blocked) {
         this.userName = userName;
         this.userKey = userKey;
         this.blocked = blocked;
@@ -38,7 +47,7 @@ public class User {
         return userName;
     }
 
-    public Long getUserKey() {
+    public Set<Key> getUserKey() {
         return userKey;
     }
 
@@ -54,7 +63,7 @@ public class User {
         this.userName = userName;
     }
 
-    public void setUserKey(Long userKey) {
+    public void setUserKey(Set<Key> userKey) {
         this.userKey = userKey;
     }
 

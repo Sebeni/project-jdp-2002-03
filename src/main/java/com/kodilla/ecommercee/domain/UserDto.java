@@ -1,12 +1,14 @@
 package com.kodilla.ecommercee.domain;
 
+import java.util.Set;
+
 public class UserDto {
     private Long id;
     private String userName;
-    private Long userKey;
+    private Set<Key> userKey;
     private boolean blocked;
 
-    public UserDto(Long id, String userName, Long userKey, boolean blocked) {
+    public UserDto(Long id, String userName, Set<Key> userKey, boolean blocked) {
         this.id = id;
         this.userName = userName;
         this.userKey = userKey;
@@ -21,7 +23,7 @@ public class UserDto {
         return userName;
     }
 
-    public Long getUserKey() {
+    public Set<Key> getUserKey() {
         return userKey;
     }
 
@@ -35,7 +37,7 @@ public class UserDto {
         this.userName = userName;
     }
 
-    public void setUserKey(Long userKey) {
+    public void setUserKey(Set<Key> userKey) {
         this.userKey = userKey;
     }
 
