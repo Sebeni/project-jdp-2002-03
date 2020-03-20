@@ -3,8 +3,8 @@ package com.kodilla.ecommercee.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity(name = "orders")
 public class Order {
@@ -14,57 +14,61 @@ public class Order {
     @NotNull
     private Long id;
 
-    @NotNull
-    private String number;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable
+    @MapKeyJoinColumn
+    @Column
+    private Map<Product, Integer> products;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
-
+    @Column(updatable = false)
     private LocalDate orderDate;
 
-    @ManyToMany
-    private List<Product> orderedProductsList = new ArrayList<>();
+    @ManyToOne
+    private User user;
 
     public Order() {
+    }
+
+    public Order(Cart cart) {
+        this(null, cart.getProducts(), cart.getUser());
+    }
+
+    public Order(Long id, Map<Product, Integer> products, User user) {
+        this.id = id;
+        this.products = new HashMap<>(products);
+        this.user = user;
+        this.orderDate = LocalDate.now();
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNumber() {
-        return number;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Product> getOrderedProductsList() {
-        return orderedProductsList;
+    public Map<Product, Integer> getProducts() {
+        return products;
     }
 
-    public User getUser() {
-        return user;
+    public void setProducts(Map<Product, Integer> products) {
+        this.products = products;
     }
 
     public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public void setOrderedProductsList(List<Product> orderedProductsList) {
-        this.orderedProductsList = orderedProductsList;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
     }
 }
