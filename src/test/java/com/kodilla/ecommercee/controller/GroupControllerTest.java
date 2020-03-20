@@ -49,9 +49,7 @@ public class GroupControllerTest {
 
     @After
     public void tearDown() {
-        groupRepository.deleteById(clothes.getId());
-        groupRepository.deleteById(jewelry.getId());
-        groupRepository.deleteById(shoes.getId());
+        groupRepository.deleteAll();
     }
 
     @Test
