@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,19 +95,10 @@ public class GroupTestSuite {
         groupRepository.save(group3);
 
         //When
-        Long group1Id = group1.getId();
         Long group3Id = group3.getId();
-
-        try {
-            groupRepository.deleteById(group1Id);
-        }
-        catch (Exception e){
-            //do nothing
-        }
         groupRepository.deleteById(group3Id);
 
         //Then
-        Assert.assertTrue(groupRepository.findById(group1Id).isPresent());
         Assert.assertFalse(groupRepository.findById(group3Id).isPresent());
     }
 }
