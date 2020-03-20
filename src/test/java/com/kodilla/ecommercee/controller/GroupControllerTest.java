@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.util.NestedServletException;
@@ -65,16 +66,22 @@ public class GroupControllerTest {
     @Test
     public void shouldReturnNewGroupAndIncreaseRepository() throws Exception {
         String nameOfGroupToAdd = "Szaliki";
+        long groupsInRepositoryBeforeAdd = groupRepository.count();
 
-        mvc.perform(MockMvcRequestBuilders
+        MvcResult result = mvc.perform(MockMvcRequestBuilders
                 .post(controllerPath + "/addGroup")
                 .param("name", nameOfGroupToAdd))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(nameOfGroupToAdd));
-
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(nameOfGroupToAdd))
+                .andReturn();
+        
+        Group addedGroup = new ObjectMapper().readValue(result.getResponse().getContentAsString(), Group.class);
         long groupsInRepository = groupRepository.count();
-        Assert.assertEquals(4, groupsInRepository);
+        
+        Assert.assertEquals(groupsInRepositoryBeforeAdd + 1, groupsInRepository);
+        
+        groupRepository.deleteById(addedGroup.getId());
     }
 
     @Test

@@ -22,7 +22,7 @@ public class Order {
 
     @Column(updatable = false)
     private LocalDate orderDate;
-
+    
     @ManyToOne
     private User user;
 
@@ -39,6 +39,7 @@ public class Order {
         this.user = user;
         this.orderDate = LocalDate.now();
     }
+
 
     public Long getId() {
         return id;
@@ -71,4 +72,6 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
+

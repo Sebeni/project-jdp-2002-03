@@ -65,18 +65,8 @@ public class CartService {
 
     public Order createOrderFromCart(Cart cart) {
 
-        Order orderToBeReturned = new Order();
+        return new Order(cart);
 
-        orderToBeReturned.setOrderDate(LocalDate.now());
-
-        orderToBeReturned.setNumber("ORD/" + cart.getId().toString() +
-                "/" + orderToBeReturned.getOrderDate().getDayOfMonth() +
-                "/" + orderToBeReturned.getOrderDate().getMonth() +
-                "/" + orderToBeReturned.getOrderDate().getYear());
-
-        cart.getProducts().keySet().stream().forEach(p-> orderToBeReturned.getOrderedProductsList().add(p));
-
-        return orderToBeReturned;
     }
 
 

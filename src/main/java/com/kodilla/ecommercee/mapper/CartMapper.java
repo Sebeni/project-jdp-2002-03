@@ -13,7 +13,7 @@ public class CartMapper {
 
         cartToBeReturned.setId(cartDto.getId());
 
-        cartDto.getProducts().stream().forEach(cartToBeReturned::addProduct);
+        cartDto.getProducts().keySet().stream().forEach(cartToBeReturned::addProduct);
 
         return cartToBeReturned;
     }
@@ -24,7 +24,7 @@ public class CartMapper {
 
         cartDtoToBeReturned.setId(cart.getId());
 
-        cart.getProducts().keySet().stream().forEach(p -> cartDtoToBeReturned.getProducts().add(p));
+        cartDtoToBeReturned.setProducts(cart.getProducts());
 
         return cartDtoToBeReturned;
     }
