@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -65,16 +64,24 @@ public class UserRepositoryTestSuite {
     @Test
     public void testUserRepositoryFindAll() {
         //When
-        List<User> users = userRepository.findAll();
-        Long user1Id = user1.getId();
-        Long user2Id = user2.getId();
-        Optional<User> user1FromDB = userRepository.findById(user1Id);
-        Optional<User> user2FromDB = userRepository.findById(user2Id);
+        Set<Key> user3Set = new HashSet<>();
+        user3Set.add(new Key(
+                11111111L,
+                LocalDateTime.of(2020, Month.MAY, 5, 15, 00, 00),
+                LocalDateTime.of(2020, Month.MAY, 5, 15, 59,59)));
+        user3Set.add(new Key(
+                2222222L,
+                LocalDateTime.of(2020, Month.JUNE, 6, 16, 00, 00),
+                LocalDateTime.of(2020, Month.JUNE, 6, 16, 59,59)));
+
+        User user3 = new User("Cesia", user3Set, false);
+
+        int usersListBefore = userRepository.findAll().size();
+        userRepository.save(user3);
+        int usersListAfter = userRepository.findAll().size();
 
         //Then
-        Assert.assertEquals(2, users.size());
-        Assert.assertEquals(user1Id, user1FromDB.get().getId());
-        Assert.assertEquals(user2Id, user2FromDB.get().getId());
+        Assert.assertEquals(1, usersListAfter - usersListBefore);
     }
 
     @Test
@@ -96,12 +103,10 @@ public class UserRepositoryTestSuite {
         Long user1Id = user1.getId();
         Long user2Id = user2.getId();
         userRepository.deleteById(user1Id);
-        List<User> users = userRepository.findAll();
-        Optional<User> user2FromDB = userRepository.findById(user2Id);
 
         //Then
-        Assert.assertEquals(1, users.size());
-        Assert.assertTrue(user2FromDB.isPresent());
+        Assert.assertEquals(1, userRepository.count());
+        Assert.assertTrue(userRepository.existsById(user2Id));
     }
 }
 

@@ -21,7 +21,7 @@ public class Key {
     @NotNull
     private LocalDateTime validTo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
     public Key(Long value, LocalDateTime validFrom, LocalDateTime validTo) {
