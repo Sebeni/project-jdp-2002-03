@@ -72,6 +72,10 @@ public class Cart {
         return user;
     }
 
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
