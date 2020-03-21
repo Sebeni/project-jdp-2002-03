@@ -3,15 +3,12 @@ package com.kodilla.ecommercee.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
 
     private String name;
@@ -50,6 +47,7 @@ public class Product {
         this.description = description;
     }
 
+
     public Group getGroup() {
         return group;
     }
@@ -74,3 +72,5 @@ public class Product {
         this.price = price;
     }
 }
+
+
