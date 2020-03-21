@@ -4,7 +4,6 @@ import com.kodilla.ecommercee.repository.GroupRepository;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,21 +32,10 @@ public class ProductTestSuite {
     private ArrayList<Long> orderIdsList = new ArrayList<>();
 
     @After
-    public void deleteAll() {
-        if(!productIdList.isEmpty()) {
-            productIdList.forEach(id -> productRepository.deleteById(id));
-        }
-        this.productIdList.clear();
-
-        if(!groupIdList.isEmpty()) {
-            groupIdList.forEach(id -> groupRepository.deleteById(id));
-        }
-        this.groupIdList.clear();
-
-        if(!orderIdsList.isEmpty()) {
-            orderIdsList.forEach(id -> orderRepository.deleteById(id));
-        }
-        this.orderIdsList.clear();
+    public void clear() {
+        productRepository.deleteAll();
+        groupRepository.deleteAll();
+        orderRepository.deleteAll();
     }
 
     @Test
@@ -60,8 +50,10 @@ public class ProductTestSuite {
         Long id = product.getId();
         productIdList.add(id);
         Optional<Product> readProduct = productRepository.findById(id);
+        assertNotNull(readProduct);
+        assertTrue(readProduct.isPresent());
         //then
-        Assert.assertTrue(readProduct.isPresent());
+        assertTrue(readProduct.isPresent());
     }
 
     @Test
@@ -76,8 +68,10 @@ public class ProductTestSuite {
         Long id = product.getId();
         productIdList.add(id);
         Optional<Product> readProduct = productRepository.findByDescription("testDescriptionProduct1");
+        assertNotNull(readProduct);
+        assertTrue(readProduct.isPresent());
         //Then
-        Assert.assertTrue(readProduct.isPresent());
+        assertTrue(readProduct.isPresent());
     }
 
     @Test
@@ -92,9 +86,11 @@ public class ProductTestSuite {
         Long id = product.getId();
         productIdList.add(id);
         Optional<Product> readProduct = productRepository.findById(id);
+        assertNotNull(readProduct);
+        assertTrue(readProduct.isPresent());
         Product product1 = readProduct.get();
         //Then
-        Assert.assertEquals(product.getId(), product1.getId());
+        assertEquals(product.getId(), product1.getId());
     }
 
     @Test
@@ -111,9 +107,11 @@ public class ProductTestSuite {
         product.setDescription("testDescriptionProduct1Updated");
         productRepository.save(product);
         Optional<Product> readProduct = productRepository.findById(id);
+        assertNotNull(readProduct);
+        assertTrue(readProduct.isPresent());
         String readDescription = readProduct.get().getDescription();
         //then
-        Assert.assertEquals("testDescriptionProduct1Updated", readDescription);
+        assertEquals("testDescriptionProduct1Updated", readDescription);
     }
 
 }

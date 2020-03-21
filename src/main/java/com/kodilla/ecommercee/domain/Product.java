@@ -9,7 +9,6 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
 
     private String name;
@@ -48,6 +47,7 @@ public class Product {
         this.description = description;
     }
 
+
     public Group getGroup() {
         return group;
     }
@@ -72,3 +72,5 @@ public class Product {
         this.price = price;
     }
 }
+
+
