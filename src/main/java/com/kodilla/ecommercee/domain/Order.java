@@ -4,7 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity(name = "orders")
 public class Order {
@@ -14,30 +16,37 @@ public class Order {
     @NotNull
     private Long id;
 
-    @NotNull
-    private String number;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private User user;
 
     private LocalDate orderDate;
 
-    @ManyToMany
-    private List<Product> orderedProductsList = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable
+    @MapKeyJoinColumn
+    @Column
+    private Map<Product, Integer> products;
 
     public Order() {
+    }
+
+    public Order(Cart cart) {
+        this(null, cart.getProducts(), cart.getUser());
+    }
+
+    public Order(Long id, Map<Product, Integer> products, User user) {
+        this.id = id;
+        this.products = new HashMap<>(products);
+        this.user = user;
+        this.orderDate = LocalDate.now();
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public List<Product> getOrderedProductsList() {
-        return orderedProductsList;
+    public Map<Product, Integer> getProducts() {
+        return products;
     }
 
     public User getUser() {
@@ -52,12 +61,8 @@ public class Order {
         this.id = id;
     }
 
-    public void setOrderedProductsList(List<Product> orderedProductsList) {
-        this.orderedProductsList = orderedProductsList;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
+    public void setProducts(Map<Product, Integer> products) {
+        this.products = products;
     }
 
     public void setUser(User user) {
