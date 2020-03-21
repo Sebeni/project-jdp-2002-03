@@ -5,11 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-public class Key {
+public class Token {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
 
     @NotNull
@@ -24,13 +23,17 @@ public class Key {
     @ManyToOne
     private User user;
 
-    public Key(Long value, LocalDateTime validFrom, LocalDateTime validTo) {
+    public Token(Long value, LocalDateTime validFrom, LocalDateTime validTo) {
         this.value = value;
         this.validFrom = validFrom;
         this.validTo = validTo;
     }
 
-    public Key() {
+    public Token() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Long getValue() {
@@ -47,6 +50,10 @@ public class Key {
 
     public User getUser() {
         return user;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setValue(Long value) {

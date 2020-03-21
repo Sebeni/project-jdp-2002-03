@@ -1,8 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Key;
+import com.kodilla.ecommercee.domain.Token;
 import com.kodilla.ecommercee.domain.UserDto;
-import com.kodilla.ecommercee.exception.UserNotAuthorisedException;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.service.UserService;
@@ -40,8 +39,8 @@ public class UserController {
         return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userToBlock)));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getKey")
-    public Key getKey(@RequestParam Long id, String userName) {
-        return userService.getKey(id, userName);
+    @RequestMapping(method = RequestMethod.GET, value = "getToken")
+    public Token getToken(@RequestParam Long id, String userName) {
+        return userService.getToken(id, userName);
     }
 }

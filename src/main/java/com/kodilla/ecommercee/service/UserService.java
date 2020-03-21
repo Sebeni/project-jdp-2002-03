@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.Key;
+import com.kodilla.ecommercee.domain.Token;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.exception.UserNotAuthorisedException;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
@@ -30,13 +30,13 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Key getKey(Long id, String userName) {
-        User userOfKey = getUserById(id).orElseThrow(UserNotFoundException::new) ;
-        if (userName.equals(userOfKey.getUserName())) {
+    public Token getToken(Long id, String userName) {
+        User userOfToken = getUserById(id).orElseThrow(UserNotFoundException::new) ;
+        if (userName.equals(userOfToken.getUserName())) {
             Random random = new Random();
-            Long value = random.nextLong() + id;
-            Key userKey = new Key(value, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
-            return userKey;
+            Long a = random.nextLong() + id;
+            Token userToken = new Token(a, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
+            return userToken;
         } else throw new UserNotAuthorisedException();
     }
 }

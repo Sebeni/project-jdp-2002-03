@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.repository;
 
-import com.kodilla.ecommercee.domain.Key;
+import com.kodilla.ecommercee.domain.Token;
 import com.kodilla.ecommercee.domain.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,22 +29,22 @@ public class UserRepositoryTestSuite {
     @Before
     public void init() {
         //Given
-        Set<Key> user1Set = new HashSet<>();
-        user1Set.add(new Key(
+        Set<Token> user1Set = new HashSet<>();
+        user1Set.add(new Token(
                 123456789L,
                 LocalDateTime.of(2020, Month.JANUARY, 1, 12, 00, 00),
                 LocalDateTime.of(2020, Month.JANUARY, 1, 12, 59,59)));
-        user1Set.add(new Key(
+        user1Set.add(new Token(
                 987654321L,
                 LocalDateTime.of(2020, Month.FEBRUARY, 2, 13, 00, 00),
                 LocalDateTime.of(2020, Month.FEBRUARY, 2, 13, 59,59)));
 
-        Set<Key> user2Set = new HashSet<>();
-        user2Set.add(new Key(
+        Set<Token> user2Set = new HashSet<>();
+        user2Set.add(new Token(
                 3456789L,
                 LocalDateTime.of(2020, Month.MARCH, 3, 14, 00, 00),
                 LocalDateTime.of(2020, Month.MARCH, 3, 14, 59,59)));
-        user2Set.add(new Key(
+        user2Set.add(new Token(
                 9876543L,
                 LocalDateTime.of(2020, Month.APRIL, 4, 15, 00, 00),
                 LocalDateTime.of(2020, Month.APRIL, 4, 15, 59,59)));
@@ -64,12 +64,12 @@ public class UserRepositoryTestSuite {
     @Test
     public void testUserRepositoryFindAll() {
         //When
-        Set<Key> user3Set = new HashSet<>();
-        user3Set.add(new Key(
+        Set<Token> user3Set = new HashSet<>();
+        user3Set.add(new Token(
                 11111111L,
                 LocalDateTime.of(2020, Month.MAY, 5, 15, 00, 00),
                 LocalDateTime.of(2020, Month.MAY, 5, 15, 59,59)));
-        user3Set.add(new Key(
+        user3Set.add(new Token(
                 2222222L,
                 LocalDateTime.of(2020, Month.JUNE, 6, 16, 00, 00),
                 LocalDateTime.of(2020, Month.JUNE, 6, 16, 59,59)));
