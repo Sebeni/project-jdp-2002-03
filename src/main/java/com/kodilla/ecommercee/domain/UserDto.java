@@ -1,15 +1,17 @@
 package com.kodilla.ecommercee.domain;
 
+import java.util.Set;
+
 public class UserDto {
     private Long id;
     private String userName;
-    private Long userKey;
+    private Set<Token> userToken;
     private boolean blocked;
 
-    public UserDto(Long id, String userName, Long userKey, boolean blocked) {
+    public UserDto(Long id, String userName, Set<Token> userToken, boolean blocked) {
         this.id = id;
         this.userName = userName;
-        this.userKey = userKey;
+        this.userToken = userToken;
         this.blocked = blocked;
     }
 
@@ -21,8 +23,8 @@ public class UserDto {
         return userName;
     }
 
-    public Long getUserKey() {
-        return userKey;
+    public Set<Token> getUserToken() {
+        return userToken;
     }
 
     public boolean isBlocked() { return blocked; }
@@ -35,8 +37,8 @@ public class UserDto {
         this.userName = userName;
     }
 
-    public void setUserKey(Long userKey) {
-        this.userKey = userKey;
+    public void setUserToken(Set<Token> userToken) {
+        this.userToken = userToken;
     }
 
     public void setBlocked(boolean blocked) {

@@ -17,7 +17,7 @@ public class Cart {
     @NotNull
     private Long id;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
     @Column
@@ -35,34 +35,26 @@ public class Cart {
         this.products = new HashMap<>();
     }
 
-
     public void addProduct(Product productToBeAdded) {
-
         if (products.containsKey(productToBeAdded)) {
-            Integer adjustedQty = products.get(productToBeAdded)+1;
-            products.replace(productToBeAdded,adjustedQty);
-        }
-        else {
-            products.put(productToBeAdded,1);
+            Integer adjustedQty = products.get(productToBeAdded) + 1;
+            products.replace(productToBeAdded, adjustedQty);
+        } else {
+            products.put(productToBeAdded, 1);
         }
     }
 
     public void removeProduct(Product productToBeRemoved) {
-
         if (products.containsKey(productToBeRemoved)) {
             Integer currentQty = products.get(productToBeRemoved);
             if (currentQty > 1) {
                 currentQty--;
                 products.replace(productToBeRemoved, currentQty);
-            }
-            else
-            {
+            } else {
                 products.remove(productToBeRemoved);
             }
         }
-
     }
-
 
     public Long getId() {
         return id;
@@ -71,16 +63,16 @@ public class Cart {
     public User getUser() {
         return user;
     }
-
-    public Map<Product, Integer> getProducts() {
-        return products;
-    }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
     }
 }
