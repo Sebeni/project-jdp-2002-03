@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static java.util.Optional.ofNullable;
 import static org.junit.Assert.*;
@@ -41,12 +41,10 @@ public class CartEntityTestSuite {
 
         Optional<Cart> cartFromRepo = cartRepository.findById(testCart.getId());
 
+        assertNotNull(cartFromRepo);
         assertTrue(cartFromRepo.isPresent());
 
-        try {
-            cartRepository.delete(testCart);
-        }
-        finally {}
+        cartRepository.delete(testCart);
     }
 
     @Test
@@ -59,12 +57,11 @@ public class CartEntityTestSuite {
 
         Optional<Cart> cartFromRepo = cartRepository.findById(testCart.getId());
 
+        assertNotNull(cartFromRepo);
         assertFalse(cartFromRepo.isPresent());
 
-        try {
-            cartRepository.delete(testCart);
-        }
-        finally {}
+        cartRepository.delete(testCart);
+
     }
 
     @Test
@@ -81,6 +78,8 @@ public class CartEntityTestSuite {
         List<Cart> cartsRecoveredFromRepo = cartRepository.findAll();
 
         assertEquals(3, cartsRecoveredFromRepo.size());
+
+        cartRepository.deleteAll();
 
     }
 
@@ -107,24 +106,29 @@ public class CartEntityTestSuite {
 
         Optional<Cart> cartFromRepo = cartRepository.findById(testCart.getId());
 
+        assertNotNull(cartFromRepo);
+        assertTrue(cartFromRepo.isPresent());
+
         assertEquals(2, cartFromRepo.get().getProducts().size());
 
-        try {
+        cartRepository.delete(testCart);
+        productRepository.delete(product1);
+        productRepository.delete(product2);
 
-            cartRepository.delete(testCart);
-            productRepository.delete(product1);
-            productRepository.delete(product2);
-        }
-        finally {}
     }
 
     @Test
     public void shouldAddCartWithUser() {
-        User testUser = new User();
 
-        testUser.setUserName("Torayasu");
-        testUser.setBlocked(false);
-        testUser.setUserKey(666L);
+        Set<Token> tokenSet = new HashSet<>();
+
+        Token token = new Token("666",
+                LocalDateTime.of(2020,1,1,0,0,0),
+                LocalDateTime.of(2020,12,31,23,30,0));
+
+        tokenSet.add(token);
+
+        User testUser = new User("Torayasu",tokenSet,false);
 
         userRepository.save(testUser);
 
@@ -134,13 +138,13 @@ public class CartEntityTestSuite {
 
         Optional<Cart> cartFromRepo = cartRepository.findById(testCart.getId());
 
+        assertNotNull(cartFromRepo);
+        assertTrue(cartFromRepo.isPresent());
+
         assertEquals("Torayasu", cartFromRepo.get().getUser().getUserName());
 
-        try {
-            cartRepository.delete(testCart);
-            userRepository.delete(testUser);
-        }
-        finally {}
+        cartRepository.delete(testCart);
+        userRepository.delete(testUser);
     }
 
 }

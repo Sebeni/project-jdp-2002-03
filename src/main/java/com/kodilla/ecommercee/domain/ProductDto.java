@@ -13,6 +13,7 @@ public class ProductDto {
     public ProductDto() {
     }
 
+
     public ProductDto(Long id, String name, String description, BigDecimal price, Group group) {
         this.id = id;
         this.name = name;

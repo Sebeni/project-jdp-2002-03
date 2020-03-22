@@ -37,8 +37,8 @@ public class Group {
         this.id = id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-
+    
 }

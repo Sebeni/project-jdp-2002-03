@@ -1,47 +1,45 @@
 package com.kodilla.ecommercee.domain;
 
-import java.util.List;
+
+import java.util.Map;
 
 
 public class CartDto {
 
     private Long id;
-    private String name;
-    private List<ProductDto> products;
+    private UserDto userDto;
+    private Map<ProductDto, Integer> products;
 
     public CartDto() {
     }
 
-    public CartDto(Long id, String name, List<ProductDto> products) {
+    public CartDto(Long id, UserDto userDto, Map<ProductDto, Integer> products) {
         this.id = id;
-        this.name = name;
+        this.userDto = userDto;
         this.products = products;
     }
 
     public Long getId() {
         return id;
     }
-
-
-    public String getName() {
-        return name;
+    
+    public UserDto getName() {
+        return userDto;
     }
-
-
-    public List<ProductDto> getProducts() {
+    
+    public Map<ProductDto, Integer> getProducts() {
         return products;
     }
-
-
+    
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(UserDto name) {
+        this.userDto = name;
     }
 
-    public void setProducts(List<ProductDto> products) {
+    public void setProducts(Map<ProductDto, Integer> products) {
         this.products = products;
     }
 }
