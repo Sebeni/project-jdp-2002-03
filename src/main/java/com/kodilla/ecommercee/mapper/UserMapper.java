@@ -13,7 +13,7 @@ public class UserMapper {
         return new User(
                 userDto.getId(),
                 userDto.getUserName(),
-                userDto.getUserKey(),
+                userDto.getUserToken(),
                 userDto.isBlocked());
     }
 
@@ -21,7 +21,7 @@ public class UserMapper {
         return new UserDto(
                 user.getId(),
                 user.getUserName(),
-                user.getUserKey(),
+                user.getUserToken(),
                 user.isBlocked());
     }
 
