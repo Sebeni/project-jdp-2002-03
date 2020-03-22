@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -33,9 +33,8 @@ public class UserService {
     public Token getToken(Long id, String userName) {
         User userOfToken = getUserById(id).orElseThrow(UserNotFoundException::new) ;
         if (userName.equals(userOfToken.getUserName())) {
-            Random random = new Random();
-            Long a = random.nextLong() + id;
-            Token userToken = new Token(a, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
+            String value = UUID.randomUUID().toString();
+            Token userToken = new Token(value, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
             return userToken;
         } else throw new UserNotAuthorisedException();
     }

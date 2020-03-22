@@ -12,7 +12,7 @@ public class Token {
     private Long id;
 
     @NotNull
-    private Long value;
+    private String value;
 
     @NotNull
     private LocalDateTime validFrom;
@@ -23,7 +23,7 @@ public class Token {
     @ManyToOne
     private User user;
 
-    public Token(Long value, LocalDateTime validFrom, LocalDateTime validTo) {
+    public Token(String value, LocalDateTime validFrom, LocalDateTime validTo) {
         this.value = value;
         this.validFrom = validFrom;
         this.validTo = validTo;
@@ -36,7 +36,7 @@ public class Token {
         return id;
     }
 
-    public Long getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -56,7 +56,7 @@ public class Token {
         this.id = id;
     }
 
-    public void setValue(Long value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
