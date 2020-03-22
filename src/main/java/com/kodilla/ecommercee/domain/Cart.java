@@ -66,11 +66,7 @@ public class Cart {
     public User getUser() {
         return user;
     }
-
-    public Map<Product, Integer> getProducts() {
-        return products;
-    }
-
+    
     public void setId(Long id) {
         this.id = id;
     }

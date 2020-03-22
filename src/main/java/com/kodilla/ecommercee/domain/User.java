@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -18,15 +19,21 @@ public class User {
     private String userName;
 
     @NotNull
-    private Long userKey;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Token> userToken;
 
-    @NotNull
     private boolean blocked;
 
-    public User(Long id, String userName, Long userKey, boolean blocked) {
+    public User(Long id, String userName, Set<Token> userToken, boolean blocked) {
         this.id = id;
         this.userName = userName;
-        this.userKey = userKey;
+        this.userToken = userToken;
+        this.blocked = blocked;
+    }
+
+    public User(String userName, Set<Token> userToken, boolean blocked) {
+        this.userName = userName;
+        this.userToken = userToken;
         this.blocked = blocked;
     }
 
@@ -41,8 +48,8 @@ public class User {
         return userName;
     }
 
-    public Long getUserKey() {
-        return userKey;
+    public Set<Token> getUserToken() {
+        return userToken;
     }
 
     public boolean isBlocked() {
@@ -57,8 +64,8 @@ public class User {
         this.userName = userName;
     }
 
-    public void setUserKey(Long userKey) {
-        this.userKey = userKey;
+    public void setUserToken(Set<Token> userToken) {
+        this.userToken = userToken;
     }
 
     public void setBlocked(boolean blocked) {
