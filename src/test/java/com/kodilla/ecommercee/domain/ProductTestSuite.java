@@ -28,8 +28,6 @@ public class ProductTestSuite {
     OrderRepository orderRepository;
 
     private ArrayList<Long> productIdList = new ArrayList<>();
-    private ArrayList<Long> groupIdList = new ArrayList<>();
-    private ArrayList<Long> orderIdsList = new ArrayList<>();
 
     @After
     public void clear() {
@@ -51,7 +49,6 @@ public class ProductTestSuite {
         productIdList.add(id);
         Optional<Product> readProduct = productRepository.findById(id);
         assertNotNull(readProduct);
-        assertTrue(readProduct.isPresent());
         //then
         assertTrue(readProduct.isPresent());
     }
@@ -69,7 +66,6 @@ public class ProductTestSuite {
         productIdList.add(id);
         Optional<Product> readProduct = productRepository.findByDescription("testDescriptionProduct1");
         assertNotNull(readProduct);
-        assertTrue(readProduct.isPresent());
         //Then
         assertTrue(readProduct.isPresent());
     }
@@ -107,8 +103,6 @@ public class ProductTestSuite {
         product.setDescription("testDescriptionProduct1Updated");
         productRepository.save(product);
         Optional<Product> readProduct = productRepository.findById(id);
-        assertNotNull(readProduct);
-        assertTrue(readProduct.isPresent());
         String readDescription = readProduct.get().getDescription();
         //then
         assertEquals("testDescriptionProduct1Updated", readDescription);
