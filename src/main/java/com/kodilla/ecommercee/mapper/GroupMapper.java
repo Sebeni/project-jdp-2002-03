@@ -2,12 +2,12 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.GroupDto;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class GroupMapper {
 
     public Group mapToGroup(final GroupDto groupDto) {
