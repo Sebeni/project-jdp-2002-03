@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 public class Cart {
 
@@ -17,7 +19,7 @@ public class Cart {
     @NotNull
     private Long id;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection (fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
     @Column
@@ -63,7 +65,7 @@ public class Cart {
     public User getUser() {
         return user;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
