@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
@@ -63,6 +65,23 @@ public class CartEntityTestSuite {
             cartRepository.delete(testCart);
         }
         finally {}
+    }
+
+    @Test
+    public void testFindAll() {
+
+        List<Cart> listOfCarts = new ArrayList<>();
+
+        listOfCarts.add(new Cart());
+        listOfCarts.add(new Cart());
+        listOfCarts.add(new Cart());
+
+        cartRepository.saveAll(listOfCarts);
+
+        List<Cart> cartsRecoveredFromRepo = cartRepository.findAll();
+
+        assertEquals(3, cartsRecoveredFromRepo.size());
+
     }
 
     @Test
