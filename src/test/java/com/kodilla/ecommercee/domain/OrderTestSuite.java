@@ -11,9 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,7 +39,11 @@ public class OrderTestSuite {
     @Before
     public void init() {
         user.setUserName("mackowit");
-        user.setUserKey(1L);
+        user.getUserToken().add(new Token(
+                "qwerty",
+                LocalDateTime.now(),
+                LocalDateTime.now().plusHours(1)));
+
         user.setBlocked(false);
         userRepository.save(user);
 
@@ -72,6 +76,7 @@ public class OrderTestSuite {
         Assert.assertEquals(3, orderRepository.count());
         Assert.assertEquals(2, orderRepository.findById(order1.getId()).get().getProducts().size());
     }
+
     @Test
     public void testOrderEntityFindAll() {
         //Given
@@ -85,12 +90,15 @@ public class OrderTestSuite {
     @Test
     public void testOrderEntityUpdate() {
         //Given
-        User user2 = new User(null, "maciej1", 2L, false);
+        Set<Token> user2Set = new HashSet<>();
+        user2Set.add(new Token("ABC", LocalDateTime.now(), LocalDateTime.now().plusHours(1)));
+
+        User user2 = new User("maciej1", user2Set, false);
 
         //When
         userRepository.save(user2);
 
-        order1.getProducts().put(product3,1);
+        order1.getProducts().put(product3, 1);
         order1.setUser(user2);
         orderRepository.save(order1);
 

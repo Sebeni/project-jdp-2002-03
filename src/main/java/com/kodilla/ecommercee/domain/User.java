@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class User {
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Token> userToken;
+    private Set<Token> userToken = new HashSet<>();
 
     private boolean blocked;
 
@@ -37,7 +38,7 @@ public class User {
         this.blocked = blocked;
     }
 
-    public User(Long id, String john, long l, boolean blocked) {
+    public User() {
     }
 
     public Long getId() {
