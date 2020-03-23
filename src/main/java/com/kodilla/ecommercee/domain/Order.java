@@ -40,6 +40,7 @@ public class Order {
         this.orderDate = LocalDate.now();
     }
 
+
     public Long getId() {
         return id;
     }
@@ -71,4 +72,6 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
+

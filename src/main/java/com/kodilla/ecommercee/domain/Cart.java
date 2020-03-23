@@ -19,6 +19,7 @@ public class Cart {
     @NotNull
     private Long id;
 
+
     @ElementCollection (fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyJoinColumn
@@ -66,6 +67,12 @@ public class Cart {
         return user;
     }
 
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,7 +81,4 @@ public class Cart {
         this.user = user;
     }
 
-    public Map<Product, Integer> getProducts() {
-        return products;
-    }
 }
