@@ -37,7 +37,7 @@ public class User {
         this.blocked = blocked;
     }
 
-    public User() {
+    public User(Long id, String john, long l, boolean blocked) {
     }
 
     public Long getId() {
